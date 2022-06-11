@@ -1,17 +1,16 @@
 class Solution {
     public void reverseString(char[] s) {
         //array, empty array, single word
-        char[] result= new char[s.length];
-        int count = 0;
-        for(int i=s.length-1;i>-1;i--)
-        {
-            result[count] = s[i];
-            count++;
+        //char[] word = s.toCharArray();
+        int i = 0;
+        int j = s.length - 1;
+        while (i < j) {
+            char temp = s[i];
+            s[i] = s[j];
+            s[j] = temp;
+            i++;
+            j--;
         }
         
-        for(int i=0;i<result.length;i++)
-        {
-            s[i] = result[i];
-        }
     }
 }
