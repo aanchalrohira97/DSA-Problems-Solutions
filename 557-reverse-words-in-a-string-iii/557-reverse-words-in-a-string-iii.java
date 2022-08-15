@@ -2,27 +2,27 @@ class Solution {
    
        public String reverseWords(String s) {
         
-        int lastIndex = -1;
-        char[] chArray = s.toCharArray();
-        int len = s.length();
-           
-        for(int startIndex = 0; startIndex<=len;startIndex++){
-            if(startIndex==len || chArray[startIndex]==' '){
-                int strtIndex = lastIndex + 1;
-                int endIndex = startIndex - 1;
-                while(strtIndex < endIndex){
-                    char t = chArray[strtIndex];
-                    chArray[strtIndex] = chArray[endIndex];
-                    chArray[endIndex] = t;
-                    endIndex--;
-                    strtIndex++;
-                }
-              lastIndex = startIndex;
+       char[] rev = s.toCharArray();
+        int i = 0;
+        for(int j = 0; j < rev.length; j++){
+            if(rev[j] == ' '){
+                reverse(rev, i, j - 1);
+                i = j + 1;
             }
         }
-    return new String(chArray);
+        reverse(rev, i, rev.length - 1);
+        return new String(rev);
+    }
+    
+    public void reverse(char[] rev, int i, int j){
+        while(i <= j){
+            char temp = rev[i];
+            rev[i] = rev[j];
+            rev[j] = temp;
+            i++; j--;
+        }
+    } 
  }
-}
 
 /*
     split the string at white space
