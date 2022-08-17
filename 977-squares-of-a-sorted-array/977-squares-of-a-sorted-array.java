@@ -3,39 +3,26 @@ class Solution {
         
         int left = 0;
         int right = nums.length -1;
-        List<Integer> results = new ArrayList<>();
+        int i = nums.length -1;
+        int[] result = new int[nums.length];
         
         while(left<=right)
         {
-            if(nums[left]<0){
-                if((-1*nums[left])<nums[right]){
-                     results.add(nums[right]*nums[right]);
-                    right--;
-                }
-                else
-                {
-                    results.add(nums[left]*nums[left]);
-                    left++;
-                }
-            }
-            else
-            {
-                if(nums[left]<nums[right]){
-                     results.add(nums[right]*nums[right]);
-                    right--;
-                   
-                }
-                else
-                {
-                  results.add(nums[left]*nums[left]);
-                    left++;
-                }
-            }
+           int prod1 = nums[left] * nums[left];
+           int prod2 = nums[right] * nums[right];
             
+           if(prod1>prod2){
+                  result[i--] =  prod1; 
+                  left++;
+           }
+            else{
+                result[i--] =  prod2; 
+                right--;
+            }
+             
         }
         
-        Collections.reverse(results);
-        return results.stream().mapToInt(i -> i).toArray();
+        return result;
         
     }
 }
